@@ -5,3 +5,11 @@ export const postComment = (req:Request, res:Response) =>
     catch
     {}
 }
+
+export const postNewUser = (req:Request, res:Response) =>
+{
+    try
+    {}
+    catch
+    {}
+}
