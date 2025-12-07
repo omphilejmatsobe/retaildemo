@@ -4,6 +4,7 @@ import Link from "next/link";
 import SliderProduct from "./cards/sliderproduct";
 import { ProductDetails } from "@/app/lib/types";
 import { use } from "react";
+import { Suspense } from "react";
 
 type props={
     category: string
@@ -37,6 +38,7 @@ export default function Carousel({category, productList}:props) {
                     products.map((prod, idx)=>(
                         <div key={"Product" + idx} className="w-[300px]">
                             <SliderProduct
+                                id={idx}
                                 name={prod.name}
                                 numberOfRatings={prod.numberOfRatings}
                                 rating={prod.rating}

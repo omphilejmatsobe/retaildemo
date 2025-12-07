@@ -3,11 +3,27 @@
 import Link from "next/link";
 import { Icon, source } from "../../icons";
 import { useState } from "react";
+import { useSearchParams, usePathname, useRouter  } from "next/navigation";
 
 export default function Nav() {
-  const [searchInput, setSearchInput] = useState("")
+  const [searchInput, setSearchInput] = useState("");
+  const searchParameters = useSearchParams();
+  const path = usePathname();
+  const { replace } = useRouter();
+
 
   const keyWords = () => {}
+
+  const handleSearch = (searchInput: string) => {
+    const parameters = new URLSearchParams(searchParameters);
+    if (searchInput == null)
+      parameters.set('query', searchInput)
+    else
+    {
+      parameters.delete('query')
+    }
+    replace(`path?${parameters.toString()}`);
+  }
 
   return (
  
@@ -35,7 +51,8 @@ export default function Nav() {
                           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                       </svg>
                   </div>
-                  <input autoComplete="off" type="search" id="search" onKeyUp={keyWords} onChange={e => {setSearchInput(e.target.value)}} className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 " placeholder="Search Mockups, Logos..." required />
+                  <input autoComplete="off" type="search" id="search" onKeyUp={keyWords} onChange={e => {handleSearch(e.target.value)}} className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 " placeholder="Search Mockups, Logos..." required>
+                  </input>
                   <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer">Search</button>
               </div>
               <div className={`${searchInput == "" ? "hidden" : "block"} absolute shadow-2xl mt-2 w-full py-10 px-5 rounded-2xl max-h-96 bg-white text-gray-500 flex flex-row`}>

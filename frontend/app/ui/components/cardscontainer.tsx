@@ -26,7 +26,6 @@ export default function Cardscontainer({productList}:props) {
         setShowMore(false)
       }
   }
-  
 
   return (
     <>
@@ -36,6 +35,7 @@ export default function Cardscontainer({productList}:props) {
         productsData.slice(0, displayLimit).map((product, idx)=>
         (
             <Product
+                id={idx}
                 key={`${product.name} ${idx}`}
                 name={product.name}
                 numberOfRatings={product.numberOfRatings}

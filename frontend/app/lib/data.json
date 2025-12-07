@@ -1,0 +1,36 @@
+{
+    "product":[
+            {
+                "name": "Apple iMac 27\", 1TB HDD, Retina 5K Display, M3 Max",
+                "numberOfRatings": 257,
+                "rating": 4,
+                "price": 1699,
+                "salePrice": 1000,
+                "imgUrl": "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
+            },
+            {
+                "name": "Apple iMac 27\", 1TB HDD, Retina 5K Display, M3 Max",
+                "numberOfRatings": 257,
+                "rating": 4,
+                "price": 1699,
+                "salePrice": 1000,
+                "imgUrl": "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
+            },
+            {
+                "name": "Apple iMac 27\", 1TB HDD, Retina 5K Display, M3 Max",
+                "numberOfRatings": 257,
+                "rating": 4,
+                "price": 1699,
+                "salePrice": 1000,
+                "imgUrl": "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
+            },
+            {
+                "name": "Apple iMac 27\", 1TB HDD, Retina 5K Display, M3 Max",
+                "numberOfRatings": 257,
+                "rating": 4,
+                "price": 1699,
+                "salePrice": 1000,
+                "imgUrl": "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
+            }
+        ]
+}
