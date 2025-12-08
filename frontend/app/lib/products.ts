@@ -25,7 +25,6 @@ export async function getProducts():Promise<ProductDetails[]>
     
     let obj = JSON.parse(result);
     const output:ProductDetails[] = obj
-    console.log(output)
     return output
 }
 

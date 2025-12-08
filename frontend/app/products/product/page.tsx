@@ -18,10 +18,10 @@ export default  function page() {
             {
                 const product = await getSpecificProduct(params);
                 setCompData(product);
-            } 
+                
+            }
         loadData();
-        
-    })
+    }, [])
 
     /* Weighted Average */
 
