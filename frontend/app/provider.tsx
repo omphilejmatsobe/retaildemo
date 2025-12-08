@@ -11,6 +11,8 @@ export default function provider({children,}: Readonly<{children: React.ReactNod
     if (!stroreElem.current) stroreElem.current = makeStore();
 
     return (
-        <div>provider</div>
+        <Provider store={stroreElem.current}>
+            {children}
+        </Provider>
     )
 }
