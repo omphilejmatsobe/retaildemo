@@ -7,12 +7,12 @@ import { use, useState } from "react";
 
 type props =
 {
-  productList: []
+  productList: Promise<ProductDetails[]>
 }
 
 export default function Cardscontainer({productList}:props) {
 
-  const productsData = productList
+  const productsData:ProductDetails[] =  use(productList)
   const size = productsData.length
   const [displayLimit, setDisplayLimit] = useState(8)
   const [showMore, setShowMore] = useState(true)
@@ -36,13 +36,13 @@ export default function Cardscontainer({productList}:props) {
         (
             <Product
                 id={idx}
-                key={`${product.title} ${idx}`}
-                name={product.title}
-                numberOfRatings={764}
-                rating={3}
+                key={`${product.name} ${idx}`}
+                name={product.name}
+                numberOfRatings={product.numberOfRatings}
+                rating={product.rating}
                 price={product.price}
-                salePrice={product.price}
-                imgUrl={product.images[0]}/>
+                salePrice={product.salePrice}
+                imgUrl={product.imgUrl}/>
         ))
       }
     </div>

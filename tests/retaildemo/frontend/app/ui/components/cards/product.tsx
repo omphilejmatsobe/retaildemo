@@ -8,27 +8,26 @@ import { Icon, source } from "../../icons";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function Product({id, name, numberOfRatings, rating, price, salePrice, imgUrl}:ProductDetails) {
+export default function Product({name, numberOfRatings, rating, price, salePrice, imgUrl}:ProductDetails) {
+  
 
   const sale = Math.floor((1 - (salePrice/price)) * 100)
-
   const [ searchInput, setSearchInput] = useState('')
   const searchParams = useParams()
   const { replace } = useRouter()
-  
 
   const handleSearch = () =>
   {
     const parameters = new URLSearchParams(searchParams)
-    replace(`/products/product?${id}`);
+    parameters.set('query', searchInput)
+    replace(`/products/product?${parameters.toString()}`);
   }
-
 
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
       <div className="h-56 w-full">
         <div onClick={handleSearch} className="cursor-pointer">
-          <img height={500} width={500} className="mx-auto h-full pointer-events-none max-h-[250px]" src={imgUrl} alt="" />
+          <Image height={500} width={500} className="mx-auto h-full pointer-events-none" src={imgUrl} alt="" />
         </div>
       </div>
       <div className="pt-6">

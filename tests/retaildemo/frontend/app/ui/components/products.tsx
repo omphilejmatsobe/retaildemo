@@ -7,10 +7,10 @@ import Cardscontainer from "./cardscontainer";
 import Filterbutton from "./filter/filterbutton";
 import { getProducts } from "@/app/lib/products";
 import { ProductDetails } from "@/app/lib/types";
-import { Suspense } from "react";
 
-export default async function Products() {
-  const products = await getProducts()
+export default  function Products() {
+
+  const products = getProducts()
 
     return (
       <section className=" py-8 antialiased md:py-12">

@@ -1,27 +1,9 @@
-'use client'
-
 import RatingBar from '@/app/ui/components/rating/rating'
-import React, { use, useEffect, useState } from 'react'
-import { Suspense } from 'react'
-import { useSearchParams } from 'next/navigation'
-import { getSpecificProduct } from '@/app/lib/products'
-import { ProductDetails } from '@/app/lib/types'
+import React from 'react'
 
-export default  function page() {
+export default function page() {
     const numberOfRatings = 1234
     const ratingCount:number[] = [176, 79, 0, 21, 957]
-    const params = useSearchParams()
-    const [compData, setCompData] = useState()
-
-    useEffect(()=>{
-        const loadData = async () =>
-            {
-                const product = await getSpecificProduct(params);
-                setCompData(product);
-            } 
-        loadData();
-        
-    })
 
     /* Weighted Average */
 
@@ -38,8 +20,6 @@ export default  function page() {
         return (sumNumerator / sumDivisor)
     }
 
-    
-
     const rating = Math.floor(weightedAve(ratingCount))
 
   return (
@@ -47,28 +27,20 @@ export default  function page() {
         <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
             <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                 <div className="shrink-0 max-w-md lg:max-w-lg mx-auto ">
-                    {
-                        compData ? 
-                            <img className="w-full dark:hidden" src={compData.images[0]} alt="" />
-                            :
-                            <>
-                                <img className="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
-                                <img className="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
-                            </>
-                    }
-
+                    <img className="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
+                    <img className="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
                 </div>
 
                 <div className="mt-6 sm:mt-8 lg:mt-0 flex flex-col items-center justify-center gap-8">
                     <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                        {compData?.title}
-                        
+                        Apple iMac 24" All-In-One Computer, Apple M1, 8GB RAM, 256GB SSD,
+                        Mac OS, Pink
                     </h1>
                     <div className="w-full mt-4 sm:items-center sm:gap-4 sm:flex">
                         <p
                         className="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"
                         >
-                        {compData?.price}
+                        $1,249.99
                         </p>
 
                         <div className="flex flex-row items-center justify-center gap-2 mt-2 sm:mt-0 bg-red">

@@ -1,94 +1,58 @@
 'use server'
 
+import Product from "../ui/components/cards/product";
 import { ProductDetails } from "./types"
 
-export async function getProducts ()
+export async function getProducts():Promise<ProductDetails[]>
 {
-    try
-    {
-        const ProductList:ProductDetails[] = [
-            {
-                id: 1,
-                name: `Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max`,
-                numberOfRatings: 257,
-                rating: 4,
-                price: 1699,
-                salePrice: 1000,
-                imgUrl: "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-            },
-            {
-                id: 2,
-                name: `George & Mason - Brae Ceramic Stackable Bowls - 4 Pack`,
-                numberOfRatings: 19,
-                rating: 3,
-                price: 2399,
-                salePrice: 1699,
-                imgUrl: "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-            },
-            {
-                id: 3,
-                name: `Dove Men+Care Advanced Care Hand and Body Cream 400ml`,
-                numberOfRatings: 482,
-                rating: 4,
-                price: 1850,
-                salePrice: 1850,
-                imgUrl: "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-            },
-            {
-                id: 4,
-                name: `Beko 60cm S/ Steel Buit-In Oven BBIE12300X`,
-                numberOfRatings: 853,
-                rating: 5,
-                price: 200,
-                salePrice: 170,
-                imgUrl: "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-            },
-            {
-                id: 5,
-                name: `Beko 60cm S/ Steel Buit-In Oven BBIE12300X`,
-                numberOfRatings: 278,
-                rating: 2,
-                price: 200,
-                salePrice: 170,
-                imgUrl: "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-            },
-            {
-                id: 6,
-                name: `Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max`,
-                numberOfRatings: 382,
-                rating: 4,
-                price: 1699,
-                salePrice: 1000,
-                imgUrl: "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-            },
-            {
-                id: 7,
-                name: `Dove Men+Care Advanced Care Hand and Body Cream 400ml`,
-                numberOfRatings: 251,
-                rating: 4,
-                price: 1850,
-                salePrice: 1850,
-                imgUrl: "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-            },
-            {
-                id: 8,
-                name: `George & Mason - Brae Ceramic Stackable Bowls - 4 Pack`,
-                numberOfRatings: 754,
-                rating: 5,
-                price: 2399,
-                salePrice: 1699,
-                imgUrl: "https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-            },
-        ]
+    let result:string = '';
+    const url = 'https://api.escuelajs.co/api/v1/products';
+    const options = {
+    method: 'GET',
+    };
 
-        return ProductList
+    try {
+        const response = await fetch(url);
+        result = await response.text();
+        
+    } catch (error) {
+        console.error(error);
     }
-
-    catch (error)
+    finally
     {
-        console.error("error")
-        throw new Error("Failed to fetch product list.")
+
     }
+    
+    let obj = JSON.parse(result);
+    const output:ProductDetails[] = obj
+    console.log(output)
+    return output
+}
+
+export async function getSpecificProduct(param:string):Promise<ProductDetails>
+{
+    let result:string = '';
+    const url = 'https://api.escuelajs.co/api/v1/products';
+    const options = {
+    method: 'GET',
+
+    };
+
+    try {
+        const response = await fetch(url);
+        result = await response.text();
+        
+    } catch (error) {
+        console.error(error);
+    }
+    finally
+    {
+
+    }
+    
+    let obj = JSON.parse(result);
+    const output:ProductDetails[] = obj
+    return output[parseInt(param)]
 }
 
 export async function fetchLatestProducts()

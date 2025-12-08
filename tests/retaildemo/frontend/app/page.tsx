@@ -2,14 +2,13 @@ import Advert from "./ui/home/advert";
 import Carousel from "./ui/components/carousel";
 import Brands from "./ui/components/brands";
 import { getProducts } from "./lib/products";
-import { ProductDetails } from "./lib/types";
 
-export default async function Home() {
+export default function Home() {
 
-  const latestProduct:ProductDetails[] = await getProducts()
-  const listTools = await getProducts()
-  const listRenovations = await getProducts()
-  const listDIY = await getProducts()
+  const latestProduct = getProducts()
+  const listTools = getProducts()
+  const listRenovations = getProducts()
+  const listDIY = getProducts()
 
   return (
 	<main className="min-h-screen px-24 flex flex-col gap-10 bg-gray-50">
