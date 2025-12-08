@@ -1,19 +1,34 @@
 
+'use client'
+
 import { ProductDetails } from "@/app/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon, source } from "../../icons";
+import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Product({name, numberOfRatings, rating, price, salePrice, imgUrl}:ProductDetails) {
+  
 
   const sale = Math.floor((1 - (salePrice/price)) * 100)
+  const [ searchInput, setSearchInput] = useState('')
+  const searchParams = useParams()
+  const { replace } = useRouter()
+
+  const handleSearch = () =>
+  {
+    const parameters = new URLSearchParams(searchParams)
+    parameters.set('query', searchInput)
+    replace(`/products/product?${parameters.toString()}`);
+  }
 
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
       <div className="h-56 w-full">
-        <Link href="#">
-          <Image height={500} width={500} className="mx-auto h-full" src={imgUrl} alt="" />
-        </Link>
+        <div onClick={handleSearch} className="cursor-pointer">
+          <Image height={500} width={500} className="mx-auto h-full pointer-events-none" src={imgUrl} alt="" />
+        </div>
       </div>
       <div className="pt-6">
         <div className="mb-4 flex items-center justify-between gap-4">
@@ -31,8 +46,8 @@ export default function Product({name, numberOfRatings, rating, price, salePrice
             </div>
           </div>
         </div>
-
-        <Link href="#" className="text-base font-semibold leading-tight text-gray-900 hover:underline">{name}</Link>
+        
+        <div className="text-base font-semibold leading-tight text-gray-900 hover:underline cursor-pointer" onClick={handleSearch}>{name}</div>
 
         <div className={`mt-2 flex items-center gap-2 ${rating > 0 ? "block" : "hidden" }`}>
           <div className="flex items-center">
