@@ -6,8 +6,11 @@ import { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { getSpecificProduct } from '@/app/lib/products'
 import { ProductDetails } from '@/app/lib/types'
+import { useDispatch } from 'react-redux'
+import { addItem } from '@/lib/features/cartSlice'
 
 export default  function page() {
+    const dispatch = useDispatch()
     const numberOfRatings = 1234
     const ratingCount:number[] = [176, 79, 0, 21, 957]
     const params = useSearchParams()
@@ -131,11 +134,11 @@ export default  function page() {
                         Add to favorites
                         </a>
 
-                        <a
-                        href="#"
-                        title=""
-                        className="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
-                        role="button"
+                        <button
+                            title=""
+                            className="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
+                            role="button"
+                            onClick={()=>dispatch(addItem())}
                         >
                         <svg
                             className="w-5 h-5 -ms-2 me-2"
@@ -156,7 +159,7 @@ export default  function page() {
                         </svg>
 
                         Add to cart
-                        </a>
+                        </button>
                     </div>
 
                     <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
@@ -203,7 +206,7 @@ export default  function page() {
                                 {
                                     ratingCount.map((rate, idx)=>
                                     (
-                                       <RatingBar totalRatings={1234} count={ratingCount[4 - idx]} rating={5 - idx}/> 
+                                       <RatingBar key={"rating_"+idx} totalRatings={1234} count={ratingCount[4 - idx]} rating={5 - idx}/> 
                                     ))
                                 }
                             </div>

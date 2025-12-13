@@ -2,6 +2,7 @@ import "@/app/ui/globals.css";
 import { Metadata } from "next";
 import Nav from "./ui/components/navigation/nav";
 import Footer from "./ui/components/navigation/footer";
+import StoreProvider from "./provider";
 
 export const metadata: Metadata = {
   title: "The Best Online Shopping Experience",
@@ -15,14 +16,13 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
       <body
         className={`antialiased`}
       >
-        <Nav/>
-
-        <main className="pt-36">
-          {children}
-        </main>
-        
-        <Footer/>
-
+        <StoreProvider>
+          <Nav/>  
+          <main className="pt-36">
+            {children}
+          </main>
+          <Footer/>
+        </StoreProvider>
       </body>
     </html>
   );

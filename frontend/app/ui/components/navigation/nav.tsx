@@ -4,8 +4,13 @@ import Link from "next/link";
 import { Icon, source } from "../../icons";
 import { useState } from "react";
 import { useSearchParams, usePathname, useRouter  } from "next/navigation";
+import { useAppDispatch, useAppSelector, useAppStore } from "@/lib/hooks";
+import { addItem, deleteItem } from "@/lib/features/cartSlice";
 
 export default function Nav() {
+
+  const count = useAppSelector((state) => state.cart.count)
+
   const [searchInput, setSearchInput] = useState("");
   const searchParameters = useSearchParams();
   const path = usePathname();
@@ -15,7 +20,7 @@ export default function Nav() {
   const keyWords = () => {}
 
   const handleSearch = () => {
-    const parameters = new URLSearchParams(searchParameters);
+    const parameters = new URLSearchParams(searchParameters!);
     if (searchInput)
       parameters.set('query', searchInput)
     else
@@ -72,13 +77,14 @@ export default function Nav() {
                 <li>
                   <Link href={`/`}>Login</Link>
                 </li>
+
                 <li className="flex flex-row gap-2 items-center">
                   <Link href={`/cart`} className="flex flex-row gap-2 items-center">
-                    <Icon h={28} w={28} className="" name="cart" icon={source.cart}/>
-                    <h3 className="hidden lg:block">Cart</h3>
-                    
+                    <Icon h={28} w={28} className="" name="cart" icon={source.cart} />
+                    <h3 className="hidden lg:block">{count}</h3>
                   </Link>
                 </li>
+
                 <li className="block lg:hidden">Burger</li>
               </ul>
             </div>

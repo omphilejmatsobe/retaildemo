@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { makeStore, AppStore } from "@/lib/store";
 
 
-export default function provider({children,}: Readonly<{children: React.ReactNode;}>)
+export default function StoreProvider({children,}: Readonly<{children: React.ReactNode;}>)
 {
     const stroreElem = useRef<AppStore>(undefined);
     if (!stroreElem.current) stroreElem.current = makeStore();
