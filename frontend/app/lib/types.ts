@@ -9,6 +9,24 @@ export type ProductDetails =
     imgUrl: string
 }
 
+export type CartProduct = 
+{
+    id: number
+    name: string
+    price: number
+    salePrice: number
+    imgUrl: string
+}
+
+export type WishlistProduct = 
+{
+    id: number
+    name: string
+    price: number
+    salePrice: number
+    imgUrl: string
+}
+
 export type UserInfo = 
 {
   id: string;
